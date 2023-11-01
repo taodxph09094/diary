@@ -1,22 +1,22 @@
 import React from "react";
 import AppLayout from "../../layout";
-import bgImage from "../../assets/images/background/ppnb1.jpeg";
+import "./Detail.css";
 
 const Detail = () => {
-  const divStyleHeader = {
-    backgroundImage: `url(${bgImage})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    width: "70%",
-    height: "110vh",
-    zIndex: 10,
-  };
+  const content =
+    "Trong mã CSS này, chúng ta đã thêm một thuộc tính box-shadow vào pseudo-element ::before để tạo box shadow cho đường kẻ dọc. Bạn có thể điều chỉnh giá trị box-shadow (độ lệch ngang, độ lệch dọc, bán kính mờ và màu sắc) theo ý muốn để tạo hiệu ứng shadow mong muốn cho đường kẻ dọc.";
   return (
     <AppLayout>
-      <div style={divStyleHeader}></div>
-      {/* <div
-        style={{ background: "white", width: "100%", height: "100vh" }}
-      ></div> */}
+      <div>
+        <div className="paper">
+          <div className="first-line">
+            <p className="text-in-line">Ngày</p>
+          </div>
+          <div className="content-line">
+            <p className="content-in-line">{content}</p>
+          </div>
+        </div>
+      </div>
     </AppLayout>
   );
 };

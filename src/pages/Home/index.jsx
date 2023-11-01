@@ -19,6 +19,7 @@ const Home = () => {
     transform: "translateX(-50%)",
     cursor: "pointer",
   };
+  const styleText = {};
   const navigate = useNavigate();
   const handleMove = () => {
     navigate("/diary");
@@ -26,6 +27,7 @@ const Home = () => {
   return (
     <div style={divStyle}>
       <img src={imageMove} style={imgStyle} alt="" onClick={handleMove} />
+      {/* <p style={styleText}>Xem và viết</p> */}
     </div>
   );
 };
