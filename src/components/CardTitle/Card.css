@@ -1,0 +1,10 @@
+.card-title {
+  position: absolute;
+  transform: translate(40px, 26px);
+}
+.card-title p {
+  font-size: 27px;
+  background-color: #ffdcbe;
+  font-family: "Caveat Brush", cursive;
+  color: #da6642;
+}
