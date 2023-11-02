@@ -33,3 +33,7 @@
   color: #000000;
   text-align: center;
 }
+.ant-modal-content {
+  border-radius: 25px !important;
+  padding: 10px 14px !important;
+}
