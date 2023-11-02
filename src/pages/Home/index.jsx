@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import backgroundImage from "../../assets/images/background/Mind.png";
 import imageMove from "../../assets/images/images/moveTo.png";
 import { useNavigate } from "react-router-dom";
-const Home = () => {
+import { Modal } from "antd";
+const Home = ({ isLogin }) => {
   const divStyle = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: "cover",
@@ -21,13 +22,34 @@ const Home = () => {
   };
   const styleText = {};
   const navigate = useNavigate();
+  const [checkModal, setCheckModal] = useState(false);
   const handleMove = () => {
-    navigate("/diary");
+    if (isLogin) {
+      navigate("/diary");
+    } else {
+      setCheckModal(true);
+    }
+  };
+  const handleOk = () => {
+    if (isLogin) {
+      navigate("/diary");
+    } else {
+      setCheckModal(true);
+    }
+  };
+  const handleCancel = () => {
+    setCheckModal(false);
   };
   return (
     <div style={divStyle}>
       <img src={imageMove} style={imgStyle} alt="" onClick={handleMove} />
-      {/* <p style={styleText}>Xem và viết</p> */}
+      {checkModal && (
+        <Modal open={checkModal}>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Modal>
+      )}
     </div>
   );
 };
