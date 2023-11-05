@@ -20,10 +20,11 @@
   border-bottom: 2px solid #474b4e;
 }
 .text-in-line {
-  padding-left: 65%;
+  padding-left: 22%;
   background-color: #f5f5f5;
-  font-family: "Just Me Again Down Here", cursive;
-  font-size: 37px;
+  font-family: "Dancing Script", cursive;
+  font-size: 30px;
+  font-weight: 700;
 }
 .content-line {
   margin: 20px 0;
@@ -33,7 +34,8 @@
   padding-left: 15%;
   padding-right: 20px;
   background-color: #f5f5f5;
-  font-family: "Just Me Again Down Here", cursive;
+  font-family: "Dancing Script", cursive;
   font-weight: 100;
-  font-size: 20px;
+  font-size: 23px;
+  font-weight: 500;
 }

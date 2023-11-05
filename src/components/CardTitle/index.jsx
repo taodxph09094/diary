@@ -15,7 +15,9 @@ const CardTitle = (props) => {
       <div className="card-header">
         <div style={divStyleHeader}>
           <div className="card-title">
-            <p>Thasng</p>
+            <p>
+              Tháng {props?.month} / {props?.year}
+            </p>
           </div>
         </div>
       </div>

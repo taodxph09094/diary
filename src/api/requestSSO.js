@@ -7,10 +7,6 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const userToken = localStorage.getItem("userToken");
-    if (userToken && userToken) {
-      config.headers.Authorization = `Bearer ${JSON.parse(userToken)}`;
-    }
     return config;
   },
   (error) => {
@@ -50,7 +46,7 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-export const request = (method, url, data) => {
+export const requestSSO = (method, url, data) => {
   if (method === "get") {
     return axiosInstance.get(url, { params: data });
   } else if (method === "post") {

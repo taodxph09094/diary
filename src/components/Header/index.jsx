@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { postLogout } from "../../api/user";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +44,14 @@ const Header = () => {
     padding: "10px 20px",
   };
 
+  const handleLogout = async () => {
+    const rp = await postLogout();
+    if (rp.status) {
+      navigate("/");
+      localStorage.removeItem("userToken");
+    }
+  };
+
   return (
     <nav style={headerStyle}>
       <ul style={menuStyle}>
@@ -50,20 +60,19 @@ const Header = () => {
             Nhật ký
           </Link>
         </li>
-        {/* <li style={menuItemStyle}>
-          <Link className="nav-link" style={{ color: "#917065" }} to="/public">
-            Mọi người
-          </Link>
-        </li>
-        <li style={menuItemStyle}>
-          <Link className="nav-link" style={{ color: "#917065" }} to="/my-list">
-            Danh sách của tôi
-          </Link>
-        </li> */}
         <li style={menuItemStyle}>
           <Link className="nav-link" style={{ color: "#917065" }} to="/info">
             Thông tin
           </Link>
+        </li>
+        <li style={menuItemStyle}>
+          <div
+            className="nav-link"
+            style={{ color: "#917065" }}
+            onClick={handleLogout}
+          >
+            Đăng xuất
+          </div>
         </li>
       </ul>
     </nav>

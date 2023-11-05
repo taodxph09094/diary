@@ -1,4 +1,7 @@
 import { settings } from "../const";
-import { request } from "../request";
+import { requestSSO } from "../requestSSO";
 export const postLogin = (body) =>
-  request("post", `${settings.API}/api/user/login`, body);
+  requestSSO("post", `${settings.API}/api/user/login`, body);
+
+export const postLogout = () =>
+  requestSSO("post", `${settings.API}/api/user/logout`);

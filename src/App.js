@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/diary" element={<ForMe />} />
           <Route path="/public" element={<Public />} />
-          <Route path="/detail" element={<Detail />} />
+          <Route path="/detail/:slug" element={<Detail />} />
         </Routes>
       ) : (
         <Routes>

@@ -53,7 +53,7 @@ const Home = ({ isLogin, auth }) => {
   const onSubmit = async (values) => {
     const response = await postLogin(values);
     if (response.status) {
-      localStorage.setItem("userToken", response.result.token);
+      localStorage.setItem("userToken", JSON.stringify(response.result.token));
       dispatch(
         setUser({
           userToken: response.result.token,
