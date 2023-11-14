@@ -28,7 +28,7 @@ const Detail = () => {
 
   return (
     <AppLayout>
-      <div>
+      <div style={{minHeight: 850}}>
         <div className="paper">
           {loading ? (
             <div
@@ -52,6 +52,7 @@ const Detail = () => {
               <div className="content-line">
                 <p className="content-in-line">{data?.content}</p>
               </div>
+
             </>
           )}
         </div>

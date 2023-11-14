@@ -24,7 +24,15 @@ const CardTitle = (props) => {
     </div>
   ) : (
     <div>
-      <div className="card-header">hi</div>
+      <div className="card-header">
+      <div style={divStyleHeader}>
+          <div className="card-title">
+            <p>
+            {props.type}
+            </p>
+          </div>
+        </div>
+       </div>
     </div>
   );
 };

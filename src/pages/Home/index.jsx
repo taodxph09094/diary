@@ -54,10 +54,11 @@ const Home = ({ isLogin, auth }) => {
     const response = await postLogin(values);
     if (response.status) {
       localStorage.setItem("userToken", JSON.stringify(response.result.token));
+      localStorage.setItem("user", JSON.stringify(response.result.user));
       dispatch(
         setUser({
           userToken: response.result.token,
-          userData: response.result.userData,
+          userData: response.result.user,
         })
       );
       navigate("/diary");

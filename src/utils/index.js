@@ -8,3 +8,9 @@ export const createSlugFromData = (data) => {
   }
   return "slug-khong-hop-le";
 };
+
+// export const slateDay = [
+//   {
+
+//   }
+// ]

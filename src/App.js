@@ -7,10 +7,13 @@ import Public from "./pages/Public";
 import Detail from "./pages/Detail";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import CreatePage from "./pages/Post/CreatePage";
 
 function App() {
   const navigate = useNavigate();
   const userToken = localStorage.getItem("userToken");
+
+  
   useEffect(() => {
     if (userToken) {
       navigate("/diary");
@@ -22,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/diary" element={<ForMe />} />
           <Route path="/public" element={<Public />} />
+          <Route path="/create" element={<CreatePage />} />
           <Route path="/detail/:slug" element={<Detail />} />
         </Routes>
       ) : (

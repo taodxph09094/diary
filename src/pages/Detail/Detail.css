@@ -5,6 +5,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   position: relative;
   padding-top: 10px;
+  padding-bottom: 20px;
   margin: 0 auto; /* Căn lề giữa bằng cách đặt margin thành auto */
 }
 .paper::before {
@@ -38,4 +39,5 @@
   font-weight: 100;
   font-size: 23px;
   font-weight: 500;
+  padding-bottom: 20px
 }

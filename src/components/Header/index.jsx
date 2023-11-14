@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { postLogout } from "../../api/user";
+import { useSelector } from "react-redux";
+
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
-
+  const user = localStorage.getItem("user");
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -49,6 +51,7 @@ const Header = () => {
     if (rp.status) {
       navigate("/");
       localStorage.removeItem("userToken");
+      localStorage.removeItem("user");
     }
   };
 
@@ -65,6 +68,14 @@ const Header = () => {
             Thông tin
           </Link>
         </li>
+        {user && user && 
+         <li style={menuItemStyle}>
+         <Link className="nav-link" style={{ color: "#917065" }} to="/create">
+           Viết bài
+         </Link>
+       </li>
+        }
+       
         <li style={menuItemStyle}>
           <div
             className="nav-link"
