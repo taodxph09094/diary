@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import backgroundImage from "../../assets/images/background/Mind.png";
 import imageMove from "../../assets/images/images/moveTo.png";
 import { useNavigate } from "react-router-dom";
-import { Form, Input, Modal, message } from "antd";
+import { Form, Input, Modal, Spin, message } from "antd";
 import { postLogin } from "../../api/user";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/user";
@@ -42,7 +42,7 @@ const Home = ({ isLogin, auth }) => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const [checkModal, setCheckModal] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const handleMove = () => {
     setCheckModal(true);
   };
@@ -51,6 +51,7 @@ const Home = ({ isLogin, auth }) => {
     form.resetFields();
   };
   const onSubmit = async (values) => {
+    setLoading(true);
     const response = await postLogin(values);
     if (response.status) {
       localStorage.setItem("userToken", JSON.stringify(response.result.token));
@@ -61,6 +62,7 @@ const Home = ({ isLogin, auth }) => {
           userData: response.result.user,
         })
       );
+      setLoading(false);
       navigate("/diary");
     }
   };
@@ -71,112 +73,133 @@ const Home = ({ isLogin, auth }) => {
   useEffect(() => {}, []);
   return (
     <div style={divStyle}>
-      <img src={imageMove} style={imgStyle} alt="" onClick={handleMove} />
-      {checkModal && (
-        <Modal open={checkModal} centered closable={false} footer={null}>
-          <div style={styleModal}>
-            <div style={styleForm}>
-              <Form onFinish={onSubmit} layout="horizontal" form={form}>
-                <Form.Item
-                  label=""
-                  name="username"
-                  onFinishFailed={onFinishFailed}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Xin nhập tài khoản!",
-                    },
-                  ]}
-                >
-                  <div
-                    style={{
-                      width: 250,
-                      backgroundColor: "#fff",
-                      height: 40,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: 10,
-                    }}
-                  >
-                    <Input
-                      style={{ border: "none" }}
-                      placeholder="Nhập tài khoản"
-                    />
-                  </div>
-                </Form.Item>
+      {loading ? (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}
+        >
+          <Spin size="large"  />
+        </div>
+      ) : (
+        <>
+          <img src={imageMove} style={imgStyle} alt="" onClick={handleMove} />
+          {checkModal && (
+            <Modal open={checkModal} centered closable={false} footer={null}>
+              <div style={styleModal}>
+                <div style={styleForm}>
+                  <Form onFinish={onSubmit} layout="horizontal" form={form}>
+                    <Form.Item
+                      label=""
+                      name="username"
+                      onFinishFailed={onFinishFailed}
+                      rules={[
+                        {
+                          required: true,
+                          message: "Xin nhập tài khoản!",
+                        },
+                      ]}
+                    >
+                      <div
+                        style={{
+                          width: 250,
+                          backgroundColor: "#fff",
+                          height: 40,
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          borderRadius: 10,
+                        }}
+                      >
+                        <Input
+                          style={{ border: "none" }}
+                          placeholder="Nhập tài khoản"
+                        />
+                      </div>
+                    </Form.Item>
 
-                <Form.Item
-                  label=""
-                  name="password"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Xin nhập mật khẩu!",
-                    },
-                  ]}
-                >
+                    <Form.Item
+                      label=""
+                      name="password"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Xin nhập mật khẩu!",
+                        },
+                      ]}
+                    >
+                      <div
+                        style={{
+                          width: 250,
+                          backgroundColor: "#fff",
+                          height: 40,
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          borderRadius: 10,
+                        }}
+                      >
+                        <Input.Password
+                          style={{ border: "none" }}
+                          placeholder="Nhập mật khẩu"
+                        />
+                      </div>
+                    </Form.Item>
+                  </Form>
+                </div>
+                <div style={btnDiv}>
                   <div
                     style={{
-                      width: 250,
-                      backgroundColor: "#fff",
+                      width: 120,
                       height: 40,
+                      backgroundColor: "#d96540",
+                      borderRadius: 20,
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      borderRadius: 10,
+                      fontSize: 18,
+                      color: "#000",
+                      fontWeight: 500,
+                      cursor: "pointer",
+                      marginRight: 10,
                     }}
+                    onClick={handleClose}
                   >
-                    <Input.Password
-                      style={{ border: "none" }}
-                      placeholder="Nhập mật khẩu"
-                    />
+                    Đóng
                   </div>
-                </Form.Item>
-              </Form>
-            </div>
-            <div style={btnDiv}>
-              <div
-                style={{
-                  width: 120,
-                  height: 40,
-                  backgroundColor: "#d96540",
-                  borderRadius: 20,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  fontSize: 18,
-                  color: "#000",
-                  fontWeight: 500,
-                  cursor: "pointer",
-                  marginRight: 10,
-                }}
-                onClick={handleClose}
-              >
-                Đóng
+                  <div
+                    style={{
+                      width: 120,
+                      height: 40,
+                      backgroundColor: "#d96540",
+                      borderRadius: 20,
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      fontSize: 18,
+                      color: "#000",
+                      fontWeight: 500,
+                      cursor: "pointer",
+                      marginLeft: 10,
+                    }}
+                    onClick={() => form.submit()}
+                  >
+                    Đăng nhập
+                  </div>
+                </div>
               </div>
-              <div
-                style={{
-                  width: 120,
-                  height: 40,
-                  backgroundColor: "#d96540",
-                  borderRadius: 20,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  fontSize: 18,
-                  color: "#000",
-                  fontWeight: 500,
-                  cursor: "pointer",
-                  marginLeft: 10,
-                }}
-                onClick={() => form.submit()}
-              >
-                Đăng nhập
-              </div>
-            </div>
-          </div>
-        </Modal>
+            </Modal>
+          )}
+        </>
       )}
     </div>
   );

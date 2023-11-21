@@ -58,3 +58,6 @@
   cursor: pointer;
   background: linear-gradient(90deg, #FFDCBE 15.1%, #D96641 85.42%);
 }
+.ant-spin-dot-item {
+  background-color: #FFE3E4 !important;
+}

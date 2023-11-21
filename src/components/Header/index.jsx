@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { postLogout } from "../../api/user";
 import { useSelector } from "react-redux";
+import { Spin } from "antd";
 
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const user = localStorage.getItem("user");
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -47,16 +49,36 @@ const Header = () => {
   };
 
   const handleLogout = async () => {
+    setLoading(true);
     const rp = await postLogout();
     if (rp.status) {
       navigate("/");
       localStorage.removeItem("userToken");
       localStorage.removeItem("user");
+      setLoading(false);
     }
   };
 
   return (
     <nav style={headerStyle}>
+       {loading ? (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}
+        >
+          <Spin size="large"  />
+        </div>
+      ) : (
       <ul style={menuStyle}>
         <li style={menuItemStyle}>
           <Link className="nav-link" style={{ color: "#917065" }} to="/diary">
@@ -86,6 +108,7 @@ const Header = () => {
           </div>
         </li>
       </ul>
+      )}
     </nav>
   );
 };
