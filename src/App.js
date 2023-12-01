@@ -11,11 +11,14 @@ import CreatePage from "./pages/Post/CreatePage";
 
 function App() {
   const navigate = useNavigate();
-  const userToken = localStorage.getItem("userToken");
 
-  
+  const userToken = localStorage.getItem("userToken");
+  const isLogin = useSelector((state) => state.user.isLogin);
+
   useEffect(() => {
-    if (userToken) {
+    if (!userToken) {
+      navigate("/");
+    } else {
       navigate("/diary");
     }
   }, [userToken]);

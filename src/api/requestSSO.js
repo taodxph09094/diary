@@ -19,7 +19,6 @@ axiosInstance.interceptors.response.use(
     if (response?.data?.message) {
       message.success(response.data.message);
     }
-
     return {
       status: true,
       message: response?.data?.message || "success",
