@@ -4,8 +4,10 @@ import CardTitle from "../../components/CardTitle";
 import Card from "../../components/Card";
 import { getAllPost } from "../../api/post";
 import { Spin } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const ForMe = () => {
+  const navigate = useNavigate();
   const [dataPost, setDataPost] = useState([]);
   const [loading, setLoading] = useState(true);
   const currentDate = new Date();
@@ -15,19 +17,22 @@ const ForMe = () => {
   const [month, setMonth] = useState(currentMonth);
 
   useEffect(() => {
-    try {
-      const fetchDataPost = async () => {
+    const fetchDataPost = async () => {
+      try {
         setLoading(true);
         const response = await getAllPost(year, month);
         if (response.status) {
           setDataPost(response.result.posts);
           setLoading(false);
+        }else{
+          localStorage.clear();
+          navigate("/diary");
         }
-      };
-      fetchDataPost();
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchDataPost();
   }, [year, month]);
 
   return (
