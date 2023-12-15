@@ -3,7 +3,7 @@ import AppLayout from "../../layout";
 import CardTitle from "../../components/CardTitle";
 import Card from "../../components/Card";
 import { getAllPost } from "../../api/post";
-import { Spin } from "antd";
+import { Col, Row, Select, Spin } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const ForMe = () => {
@@ -24,7 +24,7 @@ const ForMe = () => {
         if (response.status) {
           setDataPost(response.result.posts);
           setLoading(false);
-        }else{
+        } else {
           localStorage.clear();
           navigate("/diary");
         }
@@ -34,10 +34,74 @@ const ForMe = () => {
     };
     fetchDataPost();
   }, [year, month]);
-
+  const handleChange = (value) => {
+    setMonth(value);
+  };
   return (
     <AppLayout>
-      <CardTitle type="title" month={month} year={year} />
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <CardTitle type="title" month={month} year={year} />
+        <CardTitle>
+          <Select
+            defaultValue={month}
+            style={{
+              width: 120,
+            }}
+            onChange={handleChange}
+            options={[
+              {
+                value: 1,
+                label: "Tháng 1",
+              },
+              {
+                value: 2,
+                label: "Tháng 2",
+              },
+              {
+                value: 3,
+                label: "Tháng 3",
+              },
+              {
+                value: 4,
+                label: "Tháng 4",
+              },
+              {
+                value: 5,
+                label: "Tháng 5",
+              },
+              {
+                value: 6,
+                label: "Tháng 6",
+              },
+              {
+                value: 7,
+                label: "Tháng 7",
+              },
+              {
+                value: 8,
+                label: "Tháng 8",
+              },
+              {
+                value: 9,
+                label: "Tháng 8",
+              },
+              {
+                value: 10,
+                label: "Tháng 10",
+              },
+              {
+                value: 11,
+                label: "Tháng 11",
+              },
+              {
+                value: 12,
+                label: "Tháng 12",
+              },
+            ]}
+          />
+        </CardTitle>
+      </div>
+
       {loading ? (
         <div
           style={{
