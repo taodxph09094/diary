@@ -8,3 +8,13 @@
   font-family: "Caveat Brush", cursive;
   color: #da6642;
 }
+.card-title-select {
+  position: absolute;
+  transform: translate(-200px, 35px);
+}
+.card-title-select p {
+  font-size: 27px;
+  background-color: #ffdcbe;
+  font-family: "Caveat Brush", cursive;
+  color: #da6642;
+}

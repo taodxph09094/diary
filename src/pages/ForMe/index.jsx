@@ -39,13 +39,18 @@ const ForMe = () => {
   };
   return (
     <AppLayout>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <CardTitle type="title" month={month} year={year} />
         <CardTitle>
           <Select
             defaultValue={month}
             style={{
-              width: 120,
+              width: 150,
             }}
             onChange={handleChange}
             options={[

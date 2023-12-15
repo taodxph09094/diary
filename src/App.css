@@ -56,8 +56,45 @@
   font-size: 25px;
   color: #474747;
   cursor: pointer;
-  background: linear-gradient(90deg, #FFDCBE 15.1%, #D96641 85.42%);
+  background: linear-gradient(90deg, #ffdcbe 15.1%, #d96641 85.42%);
 }
 .ant-spin-dot-item {
-  background-color: #FFE3E4 !important;
+  background-color: #ffe3e4 !important;
+}
+.ant-select {
+  border: none !important;
+  background-color: none !important;
+}
+
+.ant-select-selector {
+  border: none !important;
+  background: none !important;
+}
+.ant-select-selection-item {
+  font-size: 27px;
+  font-family: "Caveat Brush", cursive;
+  color: #da6642;
+}
+.ant-select-arrow {
+  font-size: 27px;
+  font-family: "Caveat Brush", cursive;
+  color: #da6642;
+}
+.ant-select-dropdown {
+  background-color: #ffdcbe !important;
+}
+.rc-virtual-list-holder-inner {
+  background-color: #ffdcbe !important;
+}
+.ant-select-item-option-content {
+  font-size: 17px;
+  font-family: "Caveat Brush", cursive;
+  color: #da6642;
+}
+/* .ant-select-item-option-active {
+  background-color: red !important;
+} */
+
+.ant-select-item-option-selected {
+  background-color: #fcd1d2 !important;
 }

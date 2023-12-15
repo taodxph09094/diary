@@ -26,7 +26,7 @@ const CardTitle = (props) => {
     <div>
       <div className="card-header">
         <div style={divStyleHeader}>
-          <div className="card-title">
+          <div className="card-title-select">
             <p>{props.children}</p>
           </div>
         </div>
