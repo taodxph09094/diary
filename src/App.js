@@ -12,10 +12,7 @@ function App() {
   const navigate = useNavigate();
 
   const userToken = localStorage.getItem("userToken");
-
-
- 
-
+  
   useEffect(() => {
     if (!userToken) {
       navigate("/");
@@ -24,7 +21,9 @@ function App() {
     if(userToken){
       const decodedToken = jwtDecode(userToken);
       if (decodedToken) {
+        
         const expirationTime = decodedToken.exp;
+        console.log(expirationTime)
         const currentTime = Math.floor(Date.now() / 1000);
         const timeRemaining = expirationTime - currentTime;
         console.log("Thời gian còn lại (giây):", timeRemaining);
